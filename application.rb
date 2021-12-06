@@ -8,7 +8,7 @@ get('/') do
 end
 
 get('/rain/:latitude/:longitude') do
-  response = MeteoFrance.new.rain(params[:latitude], params[:longitude])
+  response = MeteoFrance.new(params[:latitude], params[:longitude]).rain
 
   if response[:error]
     status 422
