@@ -7,12 +7,12 @@ get('/') do
   erb :index
 end
 
-get('/rain/:latitude/:longitude') do
+get('/:latitude/:longitude/rain') do
   response = MeteoFrance.new(params[:latitude], params[:longitude]).rain
 
   if response[:error]
     status 422
-    body response[:message].to_json
+    body response[:message]
   else
     response.to_json
   end

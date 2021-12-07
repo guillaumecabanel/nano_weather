@@ -23,6 +23,8 @@ class MeteoFrance
 
     @data = JSON.parse(response.body, symbolize_names: true)
 
+    pp @data
+
     data_valid? ? rain_output : error_message
   end
 

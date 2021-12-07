@@ -1,0 +1,13 @@
+code, pre {
+  background-color: #374151;
+  color: #F3F4F6;
+}
+
+code {
+  padding: .125rem .25rem;
+}
+
+pre {
+  padding: .25rem .5rem;
+  border-radius: .125rem;
+}
