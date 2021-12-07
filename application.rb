@@ -2,6 +2,7 @@
 
 require_relative 'lib/meteo_france'
 require 'sinatra'
+require 'sinatra/json'
 
 get('/') do
   erb :index
@@ -10,10 +11,6 @@ end
 get('/:latitude/:longitude/rain') do
   response = MeteoFrance.new(params[:latitude], params[:longitude]).rain
 
-  if response[:error]
-    status 422
-    body response[:message]
-  else
-    response.to_json
-  end
+  status 422 if response[:error]
+  json response
 end
