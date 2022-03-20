@@ -4,7 +4,7 @@ require_relative 'lib/meteo_france'
 require 'sinatra'
 require 'sinatra/json'
 
-RAIN_INTENSITIES = ["  ", "░░", "▒▒", "▓▓", "██"]
+RAIN_INTENSITIES = ["  ", "..", "xx", "XX", "##"]
 
 get('/') do
   erb :index
@@ -31,7 +31,7 @@ get('/:latitude/:longitude/rain_text') do
   status 422 if response[:error]
 
   <<~TXT
-    ☀#{RAIN_INTENSITIES.join}☂#{' ' * (26 - 17)}#{Time.now.localtime.strftime("%H:%M")}
+    *#{RAIN_INTENSITIES.join}J#{' ' * (26 - 17)}#{Time.now.localtime.strftime("%H:%M")}
     #{minutes.join(" ")}
     #{cells.join(" ")}
   TXT
