@@ -32,7 +32,6 @@ get('/:latitude/:longitude/rain_text') do
 
   <<~TXT
     ☀#{RAIN_INTENSITIES.join}☂#{' ' * (26 - 17)}#{Time.now.localtime.strftime("%H:%M")}
-    #{'─' * (26)}
     #{minutes.join(" ")}
     #{cells.join(" ")}
   TXT
