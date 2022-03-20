@@ -23,15 +23,17 @@ get('/:latitude/:longitude/rain_text') do
   cells = response[:forecast].map do |cell|
     RAIN_INTENSITIES[cell[:rain_intensity].to_i]
   end
+  cells.pop
 
   minutes = response[:forecast].map do |cell|
     cell[:time].localtime.strftime("%M")
   end
+  minutes.pop
 
   status 422 if response[:error]
 
   <<~TXT
-    *#{RAIN_INTENSITIES.join}J#{' ' * (26 - 17)}#{Time.now.localtime.strftime("%H:%M")}
+    *#{RAIN_INTENSITIES.join}J#{' ' * (23 - 17)}#{Time.now.localtime.strftime("%H:%M")}
     #{minutes.join(" ")}
     #{cells.join(" ")}
   TXT
